@@ -17,6 +17,15 @@ let timestamp = new Date();
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+//create new function
+/*TO DO:
+- New drop down field on the website for # of colors
+- New drop down for direction of gradient
+- JS iterates through and creates new input fields with color and number (for percentage)
+- JS iterates through the new fields and adds the percentages together (error if not 100)
+- JS iterates through all the fields and adds the color stops to create the gradient
+*/
+
 //creating the gradient using the existing canvas and the entered values 
 function changeGradientColor(event){
     event.preventDefault();
