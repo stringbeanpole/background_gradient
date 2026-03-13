@@ -13,22 +13,45 @@
         <canvas id="canvas" width="416" height="208"></canvas>
         
         <form id="form">
-            <label for="colorStart">First Color:</label>
-            <input type="color" id="colorStart">
-
+            <label for="numColors">Number of Colors:</label>
+                <select name="Number of Colors" id="numColors">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
             <br>
 
-            <label for="colorEnd">Last Color:</label>
-            <input type="color" id="colorEnd">
+            <label for="direction">Direction:</label>
+                <select name="Direction" id="direction">
+                    <option value="right">Right</option>
+                    <option value="left">Left</option>
+                    <option value="up">Up</option>
+                    <option value="down">Down</option>
+                </select>
 
             <br>
-
             <label for="imageWidth">Desired Size:</label>
             <input type="text" id="imageWidth" placeholder="Width">px
             <strong>X</strong>
             <input type="text" id="imageHeight" placeholder="Height">px
 
             <br>
+
+            <label for="colorStart" id="startLabel">First Color:</label>
+            <input type="color" id="colorStart">
+
+            <br>
+
+            <label for="colorEnd" id="endLabel">Last Color:</label>
+            <input type="color" id="colorEnd">
+
+            <br id="gap">
 
             <input type="submit" id="submit">
         </form>

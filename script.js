@@ -2,9 +2,16 @@
 const form = document.getElementById("form");
 const colorStart = document.getElementById("colorStart");
 const colorEnd = document.getElementById("colorEnd");
+const startLabel = document.getElementById("startLabel");
+const endLabel = document.getElementById("endLabel");
 const cnvWidth = document.getElementById("imageWidth");
 const cnvHeight = document.getElementById("imageHeight");
+const numColors = document.getElementById("numColors");
+const submitButton = document.getElementById("submit");
+const gap = document.getElementById("gap");
 
+
+numColors.addEventListener("change", generateField);
 form.addEventListener("submit", changeGradientColor);
 
 //this variable checks if the form has already been submitted
@@ -19,12 +26,40 @@ const ctx = canvas.getContext("2d");
 
 //create new function
 /*TO DO:
-- New drop down field on the website for # of colors
-- New drop down for direction of gradient
 - JS iterates through and creates new input fields with color and number (for percentage)
 - JS iterates through the new fields and adds the percentages together (error if not 100)
 - JS iterates through all the fields and adds the color stops to create the gradient
 */
+
+let inputArray =[];
+
+function generateField(event){
+    let numToMake = numColors.value;
+    if (numToMake > 2){
+        form.removeChild(colorStart);
+        form.removeChild(startLabel);
+        form.removeChild(colorEnd);
+        form.removeChild(endLabel);
+        form.removeChild(gap);
+        
+        for (i = 0; i < numToMake; i++){
+            let input = document.createElement("input");
+            input.type = "color";
+            input.id = "" + (i + 1);
+            console.log(input.id);
+            let label = document.createElement("label");
+            label.for = input.id;
+            label.innerHTML = "Color " + input.id;
+            
+            let br = document.createElement("br");
+
+            form.insertBefore(br, submitButton);
+            form.insertBefore(label, submitButton);
+            form.insertBefore(input, submitButton);
+            form.insertBefore(br, submitButton);
+        }
+    }
+}
 
 //creating the gradient using the existing canvas and the entered values 
 function changeGradientColor(event){

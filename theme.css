@@ -2,6 +2,7 @@ html{
     color: black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 5px;
+    margin: 5px;
 }
 #form {
     box-sizing: border-box;
