@@ -28,7 +28,7 @@ const ctx = canvas.getContext("2d");
 /*TO DO:
 - JS iterates through and creates new input fields with color and number (for percentage)
 - JS iterates through the new fields and adds the percentages together (error if not 100)
-- JS iterates through all the fields and adds the color stops to create the gradient
+^ add a default value if percentage not specified. should be a base variable outside of function
 */
 
 let inputArray =[];
@@ -102,9 +102,10 @@ function changeGradientColor(event){
     }
     else{
         const gradient = ctx.createLinearGradient(0, 0, width, height);
+
         for (i = 0; i < inputArray.length; i++){
             let color = document.getElementById("" + (i+1));
-            gradient.addColorStop((i/10), color.value);
+            gradient.addColorStop(((i+1) / inputArray.length), color.value);
         }
         ctx.fillStyle = gradient; 
     }
