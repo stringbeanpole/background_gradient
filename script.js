@@ -40,25 +40,26 @@ function generateField(event){
         form.removeChild(startLabel);
         form.removeChild(colorEnd);
         form.removeChild(endLabel);
-        form.removeChild(gap);
         
         for (i = 0; i < numToMake; i++){
             let input = document.createElement("input");
             input.type = "color";
             input.id = "" + (i + 1);
+            inputArray.push(input);
             console.log(input.id);
             let label = document.createElement("label");
             label.for = input.id;
             label.innerHTML = "Color " + input.id;
             
             let br = document.createElement("br");
-
-            form.insertBefore(br, submitButton);
-            form.insertBefore(label, submitButton);
-            form.insertBefore(input, submitButton);
-            form.insertBefore(br, submitButton);
+            
+            form.insertBefore(br, gap);
+            form.insertBefore(label, gap);
+            form.insertBefore(input, gap);
+            form.insertBefore(br, gap);
         }
     }
+    console.log(inputArray.length);
 }
 
 //creating the gradient using the existing canvas and the entered values 
@@ -68,17 +69,9 @@ function changeGradientColor(event){
     if (submitBool == true){
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     } 
-
-    let color1 = colorStart.value;
-    let color2 = colorEnd.value;
-    console.log(color1);
-    console.log(color2);
-
     let width = cnvWidth.value;
     let height = cnvHeight.value;
     
-    
-
     if (!width){
         width = 480;
         cnvWidth.value = width;
@@ -90,17 +83,33 @@ function changeGradientColor(event){
     
     canvas.width = width;
     canvas.height = height;
-
+    
     console.log(width);
     console.log(height);
 
-    const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, color1);
-    gradient.addColorStop(1, color2);
+    if (inputArray.length == 0){
+        let color1 = colorStart.value;
+        let color2 = colorEnd.value;
+        console.log(color1);
+        console.log(color2);
 
-    ctx.fillStyle = gradient;
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        
+        gradient.addColorStop(0, color1);
+        gradient.addColorStop(1, color2);
 
-    ctx.fillRect(0,0,width, height);
+        ctx.fillStyle = gradient; 
+    }
+    else{
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        for (i = 0; i < inputArray.length; i++){
+            let color = document.getElementById("" + (i+1));
+            gradient.addColorStop((i/10), color.value);
+        }
+        ctx.fillStyle = gradient; 
+    }
+     
+    ctx.fillRect(0, 0, width, height);
 
     checkSubmit(true);
 }
