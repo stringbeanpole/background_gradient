@@ -1,16 +1,12 @@
 //pull the inputs from the field
 const form = document.getElementById("form");
-const colorStart = document.getElementById("colorStart");
-const colorEnd = document.getElementById("colorEnd");
-const startLabel = document.getElementById("startLabel");
-const endLabel = document.getElementById("endLabel");
 const cnvWidth = document.getElementById("imageWidth");
 const cnvHeight = document.getElementById("imageHeight");
 const numColors = document.getElementById("numColors");
 const submitButton = document.getElementById("submit");
 const gap = document.getElementById("gap");
 
-
+document.addEventListener("DOMContentLoaded", generateField);
 numColors.addEventListener("change", generateField);
 form.addEventListener("submit", changeGradientColor);
 
@@ -32,37 +28,44 @@ const ctx = canvas.getContext("2d");
 */
 
 let inputArray =[];
+function removeField(){
+    console.log("Remove Field entered");
+    for (i = 0; i < inputArray.length; i++){
+        let inputField = document.getElementById("" + (i + 1));
+        form.removeChild(inputField);
+        console.log("input removed")
 
+        let label = document.getElementById("l" + (i + 1))
+        form.removeChild(label);
+        console.log("label removed");
+
+        console.log(i);
+    }
+    inputArray = [];
+}
 function generateField(event){
     let numToMake = numColors.value;
-    if (numToMake > 2){
-        form.removeChild(colorStart);
-        form.removeChild(startLabel);
-        form.removeChild(colorEnd);
-        form.removeChild(endLabel);
-        
-        for (i = 0; i < numToMake; i++){
-            let input = document.createElement("input");
-            input.type = "color";
-            input.id = "" + (i + 1);
-            inputArray.push(input);
-            console.log(input.id);
-            let label = document.createElement("label");
-            label.for = input.id;
-            label.innerHTML = "Color " + input.id;
-            
-            let br = document.createElement("br");
-            
-            form.insertBefore(br, gap);
-            form.insertBefore(label, gap);
-            form.insertBefore(input, gap);
-            form.insertBefore(br, gap);
-        }
+    if (inputArray.length > 0){
+        removeField();
     }
-    else{
+    for (i = 0; i < numToMake; i++){
+        let input = document.createElement("input");
+        input.type = "color";
+        input.id = "" + (i + 1);
+        console.log("Input ID:" + input.id);
+        let label = document.createElement("label");
+        label.for = input.id;
+        label.id = "l" + (i + 1);
+        label.innerHTML = "Color " + input.id;
+        inputArray.push(i + 1);
         
+        let br = document.createElement("br");
+
+        form.insertBefore(label, gap);
+        form.insertBefore(input, gap);
+        form.insertBefore(br, gap);
     }
-    console.log(inputArray.length);
+    console.log("Array Length:" + inputArray.length);
 }
 
 //creating the gradient using the existing canvas and the entered values 
@@ -89,32 +92,22 @@ function changeGradientColor(event){
     
     console.log(width);
     console.log(height);
-
-    if (inputArray.length == 0){
-        let color1 = colorStart.value;
-        let color2 = colorEnd.value;
-        console.log(color1);
-        console.log(color2);
-
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        
-        gradient.addColorStop(0, color1);
-        gradient.addColorStop(1, color2);
-
-        ctx.fillStyle = gradient; 
-    }
-    else{
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-
-        for (i = 0; i < inputArray.length; i++){
-            let color = document.getElementById("" + (i+1));
+    
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    
+    for (i = 0; i < inputArray.length; i++){
+        let color = document.getElementById("" + (i+1));
+        if (inputArray.length > 2){
             gradient.addColorStop(((i+1) / inputArray.length), color.value);
         }
-        ctx.fillStyle = gradient; 
+        else{
+            gradient.addColorStop(i, color.value);
+        }
     }
-     
+    ctx.fillStyle = gradient; 
+    
     ctx.fillRect(0, 0, width, height);
-
+    
     checkSubmit(true);
 }
 
