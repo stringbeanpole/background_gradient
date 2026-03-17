@@ -59,6 +59,9 @@ function generateField(event){
             form.insertBefore(br, gap);
         }
     }
+    else{
+        
+    }
     console.log(inputArray.length);
 }
 
@@ -118,7 +121,7 @@ function changeGradientColor(event){
 //updates submit bool from the function call
 function checkSubmit(bool){
     if (bool){ 
-        submitBool = true;
+        submitBool = bool;
         console.log(submitBool);
     }
 }

@@ -1,7 +1,7 @@
 html{
-    --background-theme: darkgrey;
-    --text-color: white;
-    --border-color: white;
+    --background-theme: lightgray;
+    --text-color: black;
+    --border-color: var(--text-color);
     background-color: var(--background-theme);
     color: var(--text-color);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
