@@ -30,6 +30,7 @@ const ctx = canvas.getContext("2d");
 let inputArray =[];
 function removeField(){
     console.log("Remove Field entered");
+    let extraBreaks = document.getElementsByTagName("br");
     for (i = 0; i < inputArray.length; i++){
         let inputField = document.getElementById("" + (i + 1));
         form.removeChild(inputField);
@@ -40,6 +41,12 @@ function removeField(){
         console.log("label removed");
 
         console.log(i);
+    }
+    
+    for (j = 0; j < extraBreaks.length; j++){
+          if (extraBreaks[j].class != "default"){
+            form.removeChild(extraBreaks[j]);
+          }  
     }
     inputArray = [];
 }
