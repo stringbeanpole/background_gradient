@@ -1,0 +1,22 @@
+html{
+    --background-theme: lightgray;
+    --text-color: black;
+    --border-color: var(--text-color);
+    background-color: var(--background-theme);
+    color: var(--text-color);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 5px;
+}
+#form {
+    box-sizing: border-box;
+    width: max-content;
+    height: auto;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: var(--border-color);
+    padding: 7px;
+    background-color: gray;
+}
+[type="text"]:focus {
+    background-color: rgb(173, 234, 251);
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+	<link rel="stylesheet" href="theme.css">
+    <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header> 
+        </header>
+        <main>
+        <canvas id="canvas" width="416" height="208"></canvas>
+        
+        <form id="form">
+            <label for="numColors">Number of Colors:</label>
+                <select name="Number of Colors" id="numColors">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            <br class="default">
+
+            <label for="direction">Direction:</label>
+                <select name="Direction" id="direction">
+                    <option value="right">Right</option>
+                    <option value="left">Left</option>
+                    <option value="up">Up</option>
+                    <option value="down">Down</option>
+                </select>
+
+            <br class="default">
+
+            <label for="imageWidth">Desired Size:</label>
+            <input type="text" id="imageWidth" placeholder="Width">px
+            <strong>X</strong>
+            <input type="text" id="imageHeight" placeholder="Height">px
+            
+            <br class="default">
+
+            <!-- This is where the color fields are generated -->
+
+            <br id="gap">
+
+            <input type="submit" id="submit">
+        </form>
+        <button id="download">Download!</button>
+            
+
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
