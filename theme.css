@@ -1,5 +1,9 @@
 html{
-    color: black;
+    --background-theme: lightgray;
+    --text-color: black;
+    --border-color: var(--text-color);
+    background-color: var(--background-theme);
+    color: var(--text-color);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 5px;
 }
@@ -9,9 +13,9 @@ html{
     height: auto;
     border-style: solid;
     border-radius: 3px;
-    border-color: black;
+    border-color: var(--border-color);
     padding: 7px;
-    background-color: lightgray;
+    background-color: gray;
 }
 [type="text"]:focus {
     background-color: rgb(173, 234, 251);
